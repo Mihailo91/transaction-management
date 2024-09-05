@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "tiles-config_1_3.dtd">
+
+<tiles-definitions>
+	<definition name="layout" page="Layout.jsp">
+		<put name="header" value="/header.jsp" />
+		<put name="body" value="/body.jsp" />
+		<put name="footer" value="/footer.jsp" />
+	</definition>
+</tiles-definitions>

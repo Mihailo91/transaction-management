@@ -5,5 +5,5 @@
 <h:submit/>
 <hr/>
 <h:errors/>
-
+<tiles:getAsString name="transaction" ignore="true" />
 </h:form>
