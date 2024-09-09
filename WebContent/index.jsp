@@ -5,7 +5,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         .button-container {
@@ -39,24 +38,16 @@
 	<h3>Practice project</h3>
 	<div class="button-container">
 		<div>
-			<html:link page="/HomePage.jsp">
-				<h3 class="button">Apache Tiles</h3>
+			<html:link action="/transaction">
+				<h3 class="button">Apache Tiles - Action</h3>
 			</html:link>
 		</div>
-
 		<div>
 			<html:link page="/transactionDetails.jsp">
 				<h3 class="button">Apache Tiles Example + JQuery Data Table</h3>
 			</html:link>
 		</div>
-
 	</div>
-
-
 	<br>
-	<!-- 
-	<html:link action="/transaction">Apache Tiles Example + JQuery Data Table</html:link>	
-	 -->
-
 </body>
 </html:html>

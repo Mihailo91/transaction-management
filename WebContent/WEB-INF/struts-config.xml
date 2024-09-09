@@ -18,7 +18,7 @@
 
 		<action path="/transaction" name="transactionForm"
 			type="com.demo.action.TransactionAction">
-			<forward name="success" path="/WEB-INF/jsp/transaction.jsp" />
+			<forward name="success" path="/transactionDetailsPage.jsp" />
 			<forward name="failure" path="/WEB-INF/jsp/error.jsp" />
 		</action>
 		
