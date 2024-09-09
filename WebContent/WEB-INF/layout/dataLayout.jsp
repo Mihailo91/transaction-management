@@ -12,6 +12,9 @@
 	<div>
 		<tiles:insert attribute="header" />
 	</div>
+	
+	<h1>Transaction Details</h1>
+	<hr />
 
 	<div>
 		<tiles:insert attribute="body" />
