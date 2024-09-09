@@ -6,16 +6,17 @@
 <title>JSP Page</title>
 </head>
 <body style="width: 100%; height: 400px; background-color: F5EDED">
-
-	<br>
 	<h1>Transaction Details</h1>
+	<hr />
 	</br>
 	<h:form action="/transaction">
 		Load transactions <h:submit />
-		<hr />
+
 		<h:errors />
 	</h:form>
-
+</br>
+</br>
+</br>
 
 </body>
 </html>
