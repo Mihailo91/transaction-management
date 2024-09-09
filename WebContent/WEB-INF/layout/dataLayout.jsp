@@ -8,7 +8,7 @@
 <head>
 <title><tiles:getAsString name="title" ignore="true" /></title>
 </head>
-<body style="margin: 1rem; width: 100%">
+<body style="margin: 1rem; background-color:#EDEDED">
 	<div>
 		<tiles:insert attribute="header" />
 	</div>
