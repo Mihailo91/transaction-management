@@ -1,6 +1,35 @@
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="b" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="l" %>
 
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #EDEDED;
+            font-size: 16px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+    </style>
+</head>
+
 <table>
 	<tr>
 		<th>id</th>
@@ -21,7 +50,4 @@
 			<td><b:write name="transaction" property="suspiciousActivity"/> </td>
 		</tr>
 	</l:iterate>
-
-
-
 </table>

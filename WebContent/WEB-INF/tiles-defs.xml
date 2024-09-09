@@ -3,9 +3,21 @@
 "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "tiles-config_1_3.dtd">
 
 <tiles-definitions>
-	<definition name="layout" page="Layout.jsp">
-		<put name="header" value="/header.jsp" />
-		<put name="body" value="/body.jsp" />
-		<put name="footer" value="/footer.jsp" />
+	<definition name="layout" template="/WEB-INF/layout/layout.jsp">
+		<put name="header" value="/WEB-INF/jsp/header.jsp" />
+		<put name="body" value="" />
+		<put name="footer" value="/WEB-INF/jsp/footer.jsp" />
 	</definition>
+	
+	<definition name="dataLayout" template="/dataLayout.jsp">
+		<put name="header" value="/WEB-INF/jsp/header.jsp" />
+		<put name="body" value="/WEB-INF/jsp/body.jsp" />
+		<put name="footer" value="/WEB-INF/jsp/header.jsp" />
+	</definition>
+
+<definition name="listTransction" extends="dataLayout">
+    <put name="body" value="transaction.jsp"/>
+</definition>
+
 </tiles-definitions>
+

@@ -21,8 +21,14 @@
 			<forward name="success" path="/transaction.jsp" />
 			<forward name="failure" path="/error.jsp" />
 		</action>
-
+		
+		<action path="/dataTable"
+			type="com.demo.action.DataTableAction" scope="request">
+			<forward name="success" path="dataTable.jsp" />
+		</action>
 	</action-mappings>
+	
+	
 	<message-resources
 		parameter="com.demo.i18n.MessageBundle" />
 
