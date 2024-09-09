@@ -18,13 +18,13 @@
 
 		<action path="/transaction" name="transactionForm"
 			type="com.demo.action.TransactionAction">
-			<forward name="success" path="/transaction.jsp" />
-			<forward name="failure" path="/error.jsp" />
+			<forward name="success" path="/WEB-INF/jsp/transaction.jsp" />
+			<forward name="failure" path="/WEB-INF/jsp/error.jsp" />
 		</action>
 		
 		<action path="/dataTable"
 			type="com.demo.action.DataTableAction" scope="request">
-			<forward name="success" path="dataTable.jsp" />
+			<forward name="success" path="/WEB-INF/jsp/dataTable.jsp" />
 		</action>
 	</action-mappings>
 	

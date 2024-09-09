@@ -9,14 +9,15 @@
 		<put name="footer" value="/WEB-INF/jsp/footer.jsp" />
 	</definition>
 	
-	<definition name="dataLayout" template="/dataLayout.jsp">
+	<definition name="dataLayout" template="/WEB-INF/layout/dataLayout.jsp">
 		<put name="header" value="/WEB-INF/jsp/header.jsp" />
 		<put name="body" value="/WEB-INF/jsp/body.jsp" />
+		<put name="body1" value="/WEB-INF/jsp/dataTable.jsp" />
 		<put name="footer" value="/WEB-INF/jsp/header.jsp" />
 	</definition>
 
 <definition name="listTransction" extends="dataLayout">
-    <put name="body" value="transaction.jsp"/>
+    <put name="body" value="/WEB-INF/jsp/transaction.jsp"/>
 </definition>
 
 </tiles-definitions>
