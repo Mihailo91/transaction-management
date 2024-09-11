@@ -11,30 +11,37 @@ import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataTableAction extends Action {
-	private int draw;
-	private TransactionService transactionService = new TransactionService();
+	private final TransactionService transactionService = new TransactionService();
 
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+								 HttpServletResponse response) throws Exception {
 
-		List<TransactionItem> dataList = new ArrayList<>();
+		// Extracting parameters from the request
+		int draw = Integer.parseInt(request.getParameter("draw"));
+		int start = Integer.parseInt(request.getParameter("start"));
+		int length = Integer.parseInt(request.getParameter("length"));
+		String searchValue = request.getParameter("search[value]");
+		String orderColumn = request.getParameter("order[0][column]");
+		String orderDir = request.getParameter("order[0][dir]");
 
-		try {
-			dataList.addAll(transactionService.getAllTransactions());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// Fetching the total count of records
+		int recordsTotal = transactionService.getTransactionCount();
 
+		// Fetching the filtered and paginated data
+		List<TransactionItem> dataList = transactionService.getTransactionsPaginated(start, length, searchValue, orderColumn, orderDir);
+
+		// Creating the JSON response
 		JSONObject json = new JSONObject();
 		json.put("draw", draw);
-		json.put("recordsTotal", dataList.size());
+		json.put("recordsTotal", recordsTotal);
+		json.put("recordsFiltered", recordsTotal); // For simplicity, no actual filtering is done
 		json.put("data", new JSONArray(dataList));
 
+		// Sending the response back to DataTables
 		response.setContentType("application/json");
 		response.getWriter().write(json.toString());
 
