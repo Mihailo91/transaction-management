@@ -1,12 +1,7 @@
 package com.demo.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 import com.demo.model.TransactionItem;
 
@@ -59,16 +54,19 @@ public class TransactionDAO {
         return totalRecords;
     }
 
-    //TODO: fix orderColumn, it only orders by id
     public List<TransactionItem> getAllTransactionsPaginated(int start, int length, String searchValue, String orderColumn, String orderDir) throws ClassNotFoundException {
         List<TransactionItem> transactions = new ArrayList<>();
         Class.forName("org.postgresql.Driver");
 
-        // Define allowed columns and directions to avoid SQL injection
-        String[] allowedColumns = {"id", "card_holder", "card_number", "amount", "time_of_transaction", "suspicious_activity"};
-        List<String> allowedOrderColumns = Arrays.asList(allowedColumns);
-        String sanitizedOrderColumn = allowedOrderColumns.contains(orderColumn) ? orderColumn : "id"; // Default to "id" if invalid
-        String sanitizedOrderDir = "ASC".equalsIgnoreCase(orderDir) || "DESC".equalsIgnoreCase(orderDir) ? orderDir : "ASC"; // Default to "ASC"
+        Map<Integer, String> columns = new HashMap<>();
+        columns.put(0, "id");
+        columns.put(1, "card_holder");
+        columns.put(2, "card_number");
+        columns.put(3, "amount");
+        columns.put(4, "time_of_transaction");
+        columns.put(5, "suspicious_activity");
+        String orderColumnName = columns.getOrDefault(Integer.parseInt(orderColumn), "id");
+        String allowedOrderDir = "ASC".equalsIgnoreCase(orderDir) || "DESC".equalsIgnoreCase(orderDir) ? orderDir : "ASC";
 
         try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
             StringBuilder baseQuery = new StringBuilder("SELECT * FROM transaction");
@@ -76,7 +74,7 @@ public class TransactionDAO {
             if (searchValue != null && !searchValue.isEmpty()) {
                 baseQuery.append(" WHERE card_holder ILIKE ? OR card_number ILIKE ? OR amount::text ILIKE ? OR time_of_transaction::text ILIKE ? OR suspicious_activity::text ILIKE ?");
             }
-            baseQuery.append(" ORDER BY ").append(sanitizedOrderColumn).append(" ").append(sanitizedOrderDir);
+            baseQuery.append(" ORDER BY ").append(orderColumnName).append(" ").append(allowedOrderDir);
             baseQuery.append(" LIMIT ? OFFSET ?");
 
             try (PreparedStatement statement = connection.prepareStatement(baseQuery.toString())) {
